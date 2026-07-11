@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusKart</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <h1>Campus<span>Kart</span></h1>
+            <p>Buy. Sell. Connect.</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text"
+            placeholder="Search for books, gadgets, notes and more...">
+
+            <button>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+
+        <div class="nav-right">
+
+           <a href="#" id="sellBtn">
+                <i class="fa-solid fa-circle-plus"></i>
+                Sell Item
+            </a> 
+
+            <a href="#" class="cart-link">
+                🛒 Cart
+                <span class="cart-count">0</span>
+            </a>
+           <a href="#" id="loginBtn">
+                <i class="fa-solid fa-user"></i>
+                Login
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Menu -->
+
+    <section class="menu">
+
+       <a href="#home">🏠 Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#" id="myProductsBtn">
+            My Products
+        </a>
+        <a href="#orders">My Orders</a>
+        <a href="#favorites">Favorites</a>
+        <a href="#help" id="helpBtn">Help</a>
+        <a href="#" id="themeToggle">
+        <i class="fa-solid fa-moon"></i>
+        </a>
+
+    </section>
+
+    <!-- Hero Section -->
+
+   <section  id="home"  class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            For Students. By Students.
+        </span>
+
+        <h1>
+            Everything You Need,
+            <br>
+            Right on <span>Campus.</span>
+        </h1>
+
+        <p>
+            Buy and sell books, gadgets, furniture, clothing and more
+            with trusted students around you.
+        </p>
+
+        <div class="hero-features">
+            <div>✅ Trusted Students</div>
+            <div>🏷️ Great Deals Everyday</div>
+            <div>💬 Easy & Secure</div>
+        </div>
+
+        <div class="hero-buttons">
+            <a href="#items" class="btn">
+                Explore Items →
+            </a>
+
+            <a href="#" class="btn-outline" id="learnMoreBtn">
+                Learn More
+            </a>
+        </div>
+
+    </div>
+
+</section>
+        <!-- Categories -->
+
+    <section id="categories" class="categories">
+       <div class="category" data-category="All">
+    All
+</div>
+
+<div class="category" data-category="Books">
+    📚 Books
+</div>
+
+<div class="category" data-category="Electronics">
+    💻 Electronics
+</div>
+
+<div class="category" data-category="Furniture">
+    🪑 Furniture
+</div>
+
+<div class="category" data-category="Clothing">
+    👕 Clothing
+</div>
+
+<div class="category" data-category="Sports">
+    ⚽ Sports
+</div>
+
+<div class="category" data-category="Gaming">
+    🎮 Gaming
+</div>
+
+<div class="category" data-category="Gadgets">
+    ⌚ Gadgets
+</div>
+
+<div class="category" data-category="Hostel Essentials">
+    🛏️ Hostel Essentials
+</div>
+
+<div class="category" data-category="Others">
+    ➕ Others
+</div>
+
+    </section>
+
+    <!-- Featured Products -->
+
+    <section  id="items" class="featured">
+
+        <h2>Featured Listings</h2>
+
+<div class="products" id="productsContainer">
+
+</div>
+
+    </section>
+
+    <!-- Features -->
+
+    <section class="features">
+
+        <div class="feature">
+            <h3>Trusted Community</h3>
+            <p>Only students, verified users</p>
+        </div>
+
+        <div class="feature">
+            <h3>Safe & Secure</h3>
+            <p>Your safety is our priority</p>
+        </div>
+
+        <div class="feature">
+            <h3>Easy To Use</h3>
+            <p>Simple and intuitive platform</p>
+        </div>
+
+        <div class="feature">
+            <h3>24/7 Support</h3>
+            <p>We are here to help</p>
+        </div>
+
+    </section>
+
+    <!-- Stats -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <h2>500+</h2>
+            <p>Products Listed</p>
+        </div>
+
+        <div class="stat">
+            <h2>200+</h2>
+            <p>Students</p>
+        </div>
+
+        <div class="stat">
+            <h2>100+</h2>
+            <p>Successful Deals</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Support</p>
+        </div>
+
+    </section>
+    <!-- Product Modal -->
+
+<div class="modal" id="productModal">
+
+    <div class="modal-content">
+
+        <span class="close-btn">&times;</span>
+
+        <img id="modalImage" src="" alt="">
+        <div id="thumbnailContainer"></div>
+        <h2 id="modalTitle"></h2>
+        <p id="modalPrice"></p>
+       <p id="sellerName">
+        </p>
+        <p id="sellerContact">
+            Contact:
+        </p>
+        <p>
+            Location: LPU Campus
+        </p>
+
+       <p id="productDescription">
+            Description:
+        </p>
+
+        <button id="addToCartBtn">
+            🛒 Add To Cart
+        </button>
+
+    </div>
+
+</div>
+<div class="sell-modal" id="sellModal">
+
+    <div class="sell-content">
+
+        <span class="close-sell">&times;</span>
+        <h2>Sell Your Item</h2>
+       <form id="sellForm">
+
+    <input
+    type="text"
+    id="productName"
+    placeholder="Product Name"
+    required>
+
+    <input
+    type="number"
+    id="price"
+    placeholder="Price"
+    min="0"
+    required>
+
+   <select id="category" required>
+
+    <option value="">
+        Select Category
+    </option>
+
+    <option value="Books">
+        Books
+    </option>
+
+    <option value="Electronics">
+        Electronics
+    </option>
+
+    <option value="Furniture">
+        Furniture
+    </option>
+
+    <option value="Clothing">
+        Clothing
+    </option>
+
+    <option value="Sports">
+        Sports
+    </option>
+
+    <option value="Gaming">
+        Gaming
+    </option>
+
+    <option value="Hostel Essentials">
+        Hostel Essentials
+    </option>
+
+    <option value="Others">
+        Others
+    </option>
+
+</select>
+
+    <input
+    type="text"
+    id="contact"
+    placeholder="Contact Number"
+    required>
+
+   <label>Product Images (Max 5)</label>
+
+<input
+    type="file"
+    id="productImage"
+    name="images"
+    accept="image/*"
+    multiple
+    required>
+    <div id="selectedImages"></div>
+    <textarea
+    id="description"
+    placeholder="Description"></textarea>
+
+    <button type="submit">
+        Submit
+    </button>
+
+</form>
+    </div>
+
+</div>
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>CampusKart</h2>
+
+        <p>
+            Buy, Sell and Connect inside your campus.
+        </p>
+
+        <p>
+            © 2026 CampusKart | Developed by Vikash Kumar
+        </p>
+
+    </footer>
+<div class="cart-sidebar">
+
+    <div class="cart-header">
+        <h2>🛒 My Cart</h2>
+        <span class="close-cart">&times;</span>
+    </div>
+
+    <div class="cart-items">
+
+    </div>
+
+    <div class="cart-footer">
+
+        <h3>
+            Total: ₹<span id="totalPrice">0</span>
+        </h3>
+
+        <div class="cart-buttons">
+
+            <button class="checkout-btn">
+                Checkout
+            </button>
+
+            <button class="buy-btn">
+                Buy Now
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+ <div class="sell-modal" id="helpModal">
+
+    <div class="sell-content">
+
+        <span class="close-help">&times;</span>
+
+       <h2>🛟 Help & Support</h2>
+
+<div class="faq-item">
+    <h3>📦 How do I buy a product?</h3>
+    <p>
+         <strong>Answer:</strong>
+        Browse available listings, view product details,
+        and add your preferred item to the cart.
+    </p>
+</div>
+
+<div class="faq-item">
+    <h3>🛒 How can I sell an item?</h3>
+    <p>
+         <strong>Answer:</strong>
+        Click on "Sell Item", provide the required
+        product information, and submit your listing.
+    </p>
+</div>
+
+<div class="faq-item">
+    <h3>💳 How are payments handled?</h3>
+    <p>
+         <strong>Answer:</strong>
+        Buyers and sellers can mutually decide the
+        payment method before completing the transaction.
+    </p>
+</div>
+
+<div class="faq-item">
+    <h3>🔒 Is CampusKart safe to use?</h3>
+    <p>
+         <strong>Answer:</strong>
+        CampusKart is designed for students and promotes
+        secure interactions within the campus community.
+    </p>
+</div>
+
+<div class="faq-item">
+    <h3>📞 Need additional support?</h3>
+    <p>
+        Contact our support team at
+        support@campuskart.com
+    </p>
+</div>
+
+    </div>
+
+</div>   
+<div class="sell-modal" id="learnModal">
+
+    <div class="sell-content">
+
+        <span class="close-learn">&times;</span>
+
+       <h2>🚀 About CampusKart</h2>
+
+<p>
+CampusKart is a student-driven marketplace designed
+to simplify buying and selling within the campus community.
+Our platform connects students directly, making it easier
+to find affordable products, save money, and reduce waste
+through reuse.
+</p>
+
+<p>
+Whether it's textbooks, electronics, furniture,
+hostel essentials, or daily-use items, CampusKart helps
+students discover great deals from trusted peers.
+</p>
+
+<p>
+✨ Smart. Secure. Student-Friendly.
+</p>
+
+<p>
+🎯 Our Mission: To build a trusted campus ecosystem
+where students can buy, sell, and connect effortlessly.
+</p>
+
+<p>
+🌱 Promoting sustainability by encouraging reuse
+instead of unnecessary purchases.
+</p>
+
+<p>
+🤝 Built for Students, by Students.
+</p>
+</div>
+</div>
+<div class="sell-modal" id="loginModal">
+
+    <div class="login-content">
+
+        <span class="close-login">&times;</span>
+        <h2>Welcome Back</h2>
+                <p>
+                    Buy and sell products with trusted students
+                </p>
+        <form id="loginForm">
+            <input
+            type="text"
+            id="userName"
+            placeholder="Full Name"
+            required>
+
+            <input
+            type="email"
+            id="userEmail"
+            placeholder="Email Address"
+            required>
+
+            <button type="submit">
+                Continue
+            </button>
+
+        </form>
+    </div>
+    </div>
+<div id="imagePreview" class="image-preview">
+
+    <span id="closePreview">&times;</span>
+
+    <span id="prevPreview">❮</span>
+
+    <img id="previewImg">
+
+    <span id="nextPreview">❯</span>
+
+</div>
+<div class="sell-modal" id="editModal">
+
+    <div class="sell-content">
+
+        <span class="close-edit">&times;</span>
+
+        <h2>Edit Product</h2>
+
+        <input
+        type="number"
+        id="editPrice"
+        placeholder="Price">
+
+        <input
+        type="text"
+        id="editContact"
+        placeholder="Contact">
+
+       <textarea id="editDescription" placeholder="Description"></textarea>
+
+        <button id="updateBtn">
+            Update Product
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
