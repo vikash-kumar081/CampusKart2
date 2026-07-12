@@ -12,6 +12,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.send("CampusKart Backend Running");
 });
+app.get("/admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "admin.html"));
+});
 app.use("/uploads", express.static("uploads"));
 
 const storage = multer.diskStorage({
