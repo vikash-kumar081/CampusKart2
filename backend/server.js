@@ -8,7 +8,13 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+const rootPath = path.join(__dirname, "..");
 
+app.use(express.static(rootPath));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(rootPath, "index.html"));
+});
 app.get("/", (req, res) => {
     res.send("CampusKart Backend Running");
 });
