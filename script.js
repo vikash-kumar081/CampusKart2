@@ -89,7 +89,7 @@ previewImages = images;
 if(images.length > 0){
 
     modalImage.src =
-    `http://localhost:5000/uploads/${images[0].trim()}`;
+    `/uploads/${images[0].trim()}`;
 
 }else{
 
@@ -104,7 +104,7 @@ images.forEach(img => {
 
     thumbnailContainer.innerHTML += `
         <img
-        src="http://localhost:5000/uploads/${img}"
+        src="/uploads/${img}"
         class="thumb"
         style="width:60px;height:60px;cursor:pointer;margin:5px;">
     `;
@@ -177,7 +177,7 @@ addToCartBtn.addEventListener(
         try{
             const response =
             await fetch(
-                "http://localhost:5000/cart",
+                "/cart",
                 {
                     method: "POST",
                     headers:{
@@ -218,7 +218,7 @@ document.addEventListener("click", async (e) => {
 
                 const response =
                 await fetch(
-                    "http://localhost:5000/wishlist",
+                    "/wishlist",
                     {
                         method: "DELETE",
                         headers:{
@@ -244,7 +244,7 @@ document.addEventListener("click", async (e) => {
 
                 const response =
                 await fetch(
-                    "http://localhost:5000/wishlist",
+                    "/wishlist",
                     {
                         method: "POST",
                         headers:{
@@ -412,7 +412,7 @@ document
     try {
 
         const response = await fetch(
-            "http://localhost:5000/login",
+            "/login",
             {
                 method: "POST",
                 headers: {
@@ -581,7 +581,7 @@ allImages.forEach(image => {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/add-product",
+            "/add-product",
             {
                 method: "POST",
                 body: formData
@@ -611,7 +611,7 @@ async function loadProducts() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/products"
+            "/products"
         );
 
         const products = await response.json();
@@ -632,7 +632,7 @@ async function loadProducts() {
 
     const imageUrl =
     firstImage
-    ? `http://localhost:5000/uploads/${firstImage}`
+    ? `/uploads/${firstImage}`
     : "images/laptop.jpg";
 
     container.innerHTML += `
@@ -680,7 +680,7 @@ async function loadCart() {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/cart/${userEmail}`
+            `/cart/${userEmail}`
         );
 
         const cartData = await response.json();
@@ -733,7 +733,7 @@ async function loadCart() {
     try {
 
         await fetch(
-            "http://localhost:5000/cart",
+            "/cart",
             {
                 method: "DELETE",
                 headers:{
@@ -793,7 +793,7 @@ async function loadWishlist() {
 
         const response =
         await fetch(
-            `http://localhost:5000/wishlist/${userEmail}`
+            `/wishlist/${userEmail}`
         );
 
         const wishlistData =
@@ -850,7 +850,7 @@ async function loadMyProducts() {
     try {
 
         const response = await fetch(
-            `http://localhost:5000/my-products/${userEmail}`
+            `/my-products/${userEmail}`
         );
 
         const products =
@@ -882,7 +882,7 @@ product.images
 
 const imageUrl =
 firstImage
-? `http://localhost:5000/uploads/${firstImage}`
+? `/uploads/${firstImage}`
 : "images/laptop.jpg";
        
     container.innerHTML += `
@@ -970,7 +970,7 @@ document.addEventListener("click", async (e) => {
 
             const response =
             await fetch(
-                `http://localhost:5000/product/${productId}`,
+                `/product/${productId}`,
                 {
                     method: "DELETE"
                 }
@@ -1076,7 +1076,7 @@ updateBtn.addEventListener(
 
             const response =
             await fetch(
-                `http://localhost:5000/product/${currentProductId}`,
+                `/product/${currentProductId}`,
                 {
                     method: "PUT",
 
@@ -1174,7 +1174,7 @@ nextPreview.addEventListener("click",()=>{
     % previewImages.length;
 
     previewImg.src =
-    `http://localhost:5000/uploads/${
+    `/uploads/${
         previewImages[previewIndex].trim()
     }`;
 
@@ -1189,7 +1189,7 @@ prevPreview.addEventListener("click",()=>{
     % previewImages.length;
 
     previewImg.src =
-    `http://localhost:5000/uploads/${
+    `/uploads/${
         previewImages[previewIndex].trim()
     }`;
 
