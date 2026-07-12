@@ -5,7 +5,13 @@ const cors = require("cors");
 const db = require("./db");
 
 const app = express();
+const fs = require("fs");
 
+const uploadsDir = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
 app.use(cors());
 app.use(express.json());
 const rootPath = path.join(__dirname, "..");
@@ -15,28 +21,22 @@ app.use(express.static(rootPath));
 app.get("/", (req, res) => {
     res.sendFile(path.join(rootPath, "index.html"));
 });
-app.get("/", (req, res) => {
-    res.send("CampusKart Backend Running");
-});
+
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(__dirname, "admin.html"));
 });
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 const storage = multer.diskStorage({
-
     destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "uploads"));
-},
-
+        cb(null, uploadsDir);
+    },
     filename: (req, file, cb) => {
         cb(
             null,
-            Date.now() +
-            path.extname(file.originalname)
+            Date.now() + path.extname(file.originalname)
         );
     }
-
 });
 
 const upload = multer({
