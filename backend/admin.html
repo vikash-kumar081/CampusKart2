@@ -154,9 +154,7 @@ async function approveProduct(id){
 
     try{
 
-        await fetch(
-            `""/approve/${id}`
-        );
+        await fetch(`/approve/${id}`);
 
         alert("✅ Product Approved");
 
@@ -177,8 +175,7 @@ async function rejectProduct(id){
 
     try{
 
-        await fetch(`""/reject/${id}`
-        );
+        await fetch(`/reject/${id}`);
 
         alert("❌ Product Rejected");
 
