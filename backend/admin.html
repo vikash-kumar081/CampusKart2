@@ -94,7 +94,7 @@ async function loadPendingProducts(){
 
         const response =
         await fetch(
-            "http://localhost:5000/pending-products"
+            "https://campuskart2.onrender.com/pending-products"
         );
 
         const products =
@@ -155,7 +155,7 @@ async function approveProduct(id){
     try{
 
         await fetch(
-            `http://localhost:5000/approve/${id}`
+            `""/approve/${id}`
         );
 
         alert("✅ Product Approved");
@@ -177,8 +177,7 @@ async function rejectProduct(id){
 
     try{
 
-        await fetch(
-            `http://localhost:5000/reject/${id}`
+        await fetch(`""/reject/${id}`
         );
 
         alert("❌ Product Rejected");
