@@ -3,15 +3,12 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const db = require("./db");
-
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const app = express();
 const fs = require("fs");
 
-const uploadsDir = path.join(__dirname, "uploads");
 
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-}
 app.use(cors());
 app.use(express.json());
 const rootPath = path.join(__dirname, "..");
@@ -27,15 +24,17 @@ app.get("/admin", (req, res) => {
 });
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadsDir);
-    },
-    filename: (req, file, cb) => {
-        cb(
-            null,
-            Date.now() + path.extname(file.originalname)
-        );
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "campuskart",
+        allowed_formats: ["jpg", "jpeg", "png", "webp"]
     }
 });
 
@@ -93,10 +92,10 @@ const user_name = req.body.user_name;
 
         const stock = 1;
 
-       const images =
+const images =
 req.files.length > 0
 ? req.files.map(
-file => file.filename
+file => file.path
 ).join(",")
 : null;
 
