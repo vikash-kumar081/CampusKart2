@@ -88,8 +88,8 @@ card.dataset.images
 previewImages = images;
 if(images.length > 0){
 
-    modalImage.src =
-    `/uploads/${images[0].trim()}`;
+   modalImage.src =
+images[0].trim();
 
 }else{
 
@@ -104,7 +104,7 @@ images.forEach(img => {
 
     thumbnailContainer.innerHTML += `
         <img
-        src="/uploads/${img}"
+       src="${img}"
         class="thumb"
         style="width:60px;height:60px;cursor:pointer;margin:5px;">
     `;
@@ -630,10 +630,10 @@ async function loadProducts() {
     ? product.images.split(",")[0].trim()
     : product.image;
 
-    const imageUrl =
-    firstImage
-    ? `/uploads/${firstImage}`
-    : "images/laptop.jpg";
+   const imageUrl =
+firstImage
+? firstImage
+: "images/laptop.jpg";
 
     container.innerHTML += `
 <div class="card"
@@ -882,7 +882,7 @@ product.images
 
 const imageUrl =
 firstImage
-? `/uploads/${firstImage}`
+? firstImage
 : "images/laptop.jpg";
        
     container.innerHTML += `
@@ -1174,12 +1174,9 @@ nextPreview.addEventListener("click",()=>{
     % previewImages.length;
 
     previewImg.src =
-    `/uploads/${
-        previewImages[previewIndex].trim()
-    }`;
+    previewImages[previewIndex].trim();
 
 });
-
 prevPreview.addEventListener("click",()=>{
 
     if(previewImages.length === 0) return;
@@ -1187,10 +1184,6 @@ prevPreview.addEventListener("click",()=>{
     previewIndex =
     (previewIndex - 1 + previewImages.length)
     % previewImages.length;
-
-    previewImg.src =
-    `/uploads/${
-        previewImages[previewIndex].trim()
-    }`;
-
+previewImg.src =
+previewImages[previewIndex].trim();
 });
