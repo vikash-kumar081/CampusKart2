@@ -34,12 +34,22 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: "campuskart",
-        allowed_formats: ["jpg", "jpeg", "png", "webp"]
+        allowed_formats: ["jpg", "jpeg", "png", "webp"],
+        transformation: [
+            {
+                width: 1200,
+                crop: "limit",
+                quality: "auto"
+            }
+        ]
     }
 });
 
 const upload = multer({
-    storage
+    storage,
+    limits: {
+        fileSize: 10 * 1024 * 1024
+    }
 });
 app.get("/products", (req, res) => {
 

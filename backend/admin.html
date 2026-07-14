@@ -76,6 +76,64 @@
         .reject-btn:hover{
             opacity:0.9;
         }
+        .modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.modal-content{
+    background:white;
+    width:90%;
+    max-width:800px;
+    padding:20px;
+    border-radius:15px;
+    max-height:90vh;
+    overflow-y:auto;
+    position:relative;
+}
+
+.close-modal{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:30px;
+    cursor:pointer;
+}
+
+.main-image{
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    margin-bottom:15px;
+}
+
+.thumbs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.thumbs img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:10px;
+    cursor:pointer;
+    border:2px solid #eee;
+}
+
+.thumbs img:hover{
+    border-color:#0f9d58;
+}
 
     </style>
 
@@ -87,7 +145,7 @@
     <div id="pendingProducts"></div>
 
 <script>
-
+let allPendingProducts = [];
 async function loadPendingProducts(){
 
     try{
@@ -99,7 +157,7 @@ async function loadPendingProducts(){
 
         const products =
         await response.json();
-
+        allPendingProducts = products;
         const container =
         document.getElementById("pendingProducts");
 
@@ -115,28 +173,41 @@ async function loadPendingProducts(){
 
         products.forEach(product => {
 
-            container.innerHTML += `
-            <div class="card">
+           container.innerHTML += `
+<div class="card">
 
-                <h3>${product.product_name}</h3>
+    <img
+    src="${product.images ? product.images.split(',')[0].trim() : ''}"
+    style="
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:10px;">
 
-                <p>₹${product.price}</p>
+    <h3>${product.product_name}</h3>
 
-                <button
-                class="approve-btn"
-                onclick="approveProduct(${product.product_id})">
-                    ✅ Approve
-                </button>
+    <p>₹${product.price}</p>
 
-                <button
-                class="reject-btn"
-                onclick="rejectProduct(${product.product_id})">
-                    ❌ Reject
-                </button>
+    <button
+    onclick="viewDetails(${product.product_id})">
+        👁 View Details
+    </button>
 
-            </div>
-            `;
+    <button
+    class="approve-btn"
+    onclick="approveProduct(${product.product_id})">
+        ✅ Approve
+    </button>
 
+    <button
+    class="reject-btn"
+    onclick="rejectProduct(${product.product_id})">
+        ❌ Reject
+    </button>
+
+</div>
+`;
         });
 
     }
@@ -183,19 +254,96 @@ async function rejectProduct(id){
 
     }
     catch(error){
-
         console.log(error);
-
         alert("Error Rejecting Product");
 
     }
-
 }
+function viewDetails(id){
+
+    const product =
+    allPendingProducts.find(
+        p => p.product_id == id
+    );
+
+    if(!product) return;
+
+    const images =
+    product.images
+    ? product.images.split(",")
+    : [];
+
+    document.getElementById("mainImage").src =
+    images.length
+    ? images[0].trim()
+    : "";
+
+    document.getElementById("thumbContainer").innerHTML =
+    images.map(img => `
+        <img
+        src="${img.trim()}"
+        onclick="
+        document.getElementById('mainImage').src='${img.trim()}'
+        ">
+    `).join("");
+
+    document.getElementById("modalTitle").textContent =
+    product.product_name;
+
+    document.getElementById("modalPrice").textContent =
+    "Price: ₹" + product.price;
+
+    document.getElementById("modalCategory").textContent =
+    "Category: " + (product.category || "");
+
+    document.getElementById("modalSeller").textContent =
+    "Seller: " + (product.user_name || "");
+
+    document.getElementById("modalContact").textContent =
+    "Contact: " + (product.contact || "");
+
+    document.getElementById("modalDescription").textContent =
+    "Description: " + (product.description || "");
+
+    document.getElementById("detailsModal").style.display =
+    "flex";
+}
+
 
 loadPendingProducts();
 
 </script>
 
+<div id="detailsModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+id="closeModal"
+class="close-modal"
+onclick="document.getElementById('detailsModal').style.display='none'">
+×
+</span>
+
+        <img id="mainImage" class="main-image">
+
+        <div id="thumbContainer" class="thumbs"></div>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalPrice"></p>
+
+        <p id="modalCategory"></p>
+
+        <p id="modalSeller"></p>
+
+        <p id="modalContact"></p>
+
+        <p id="modalDescription"></p>
+
+    </div>
+
+</div>
+
 </body>
 </html>
-

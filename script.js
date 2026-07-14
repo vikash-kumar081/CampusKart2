@@ -527,14 +527,18 @@ function renderImages(){
     });
 
 }
-
+const submitBtn =
+document.querySelector(
+'#sellForm button[type="submit"]'
+);
 
 const sellForm = document.getElementById("sellForm");
 
 sellForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
-
+     submitBtn.disabled = true;
+    submitBtn.innerText = "Uploading Images...";
     const formData = new FormData();
 
     formData.append(
@@ -590,20 +594,24 @@ allImages.forEach(image => {
 
         const data = await response.json();
         alert(data.message);
-
+        submitBtn.disabled = false;
+submitBtn.innerText = "Submit Product";
         sellForm.reset();
 allImages = [];
 
 document.getElementById(
     "selectedImages"
 ).innerHTML = "";
-    } catch (error) {
+    }catch (error) {
 
-        console.log(error);
+    console.log(error);
 
-        alert("Error adding product");
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Product";
+        
+    alert("Error adding product");
 
-    }
+}
 
 });
 async function loadProducts() {
