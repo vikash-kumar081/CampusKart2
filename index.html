@@ -14,8 +14,11 @@
 <body>
 
     <!-- Navbar -->
-
     <nav class="navbar">
+
+        <div class="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+</div>
 
         <div class="logo">
             <h1>Campus<span>Kart</span></h1>
@@ -53,7 +56,10 @@
     <!-- Menu -->
 
     <section class="menu">
-
+        <span class="close-menu">&times;</span>
+        <div class="menu-header">
+    <h2>Campus<span>Kart</span></h2>
+</div>
        <a href="#home">🏠 Home</a>
         <a href="#categories">Categories</a>
         <a href="#" id="myProductsBtn">
@@ -71,9 +77,7 @@
     <!-- Hero Section -->
 
    <section  id="home"  class="hero">
-
     <div class="hero-content">
-
         <span class="hero-badge">
             For Students. By Students.
         </span>
@@ -156,19 +160,13 @@
     <!-- Featured Products -->
 
     <section  id="items" class="featured">
-
         <h2>Featured Listings</h2>
-
 <div class="products" id="productsContainer">
-
 </div>
-
     </section>
 
     <!-- Features -->
-
     <section class="features">
-
         <div class="feature">
             <h3>Trusted Community</h3>
             <p>Only students, verified users</p>
@@ -188,7 +186,6 @@
             <h3>24/7 Support</h3>
             <p>We are here to help</p>
         </div>
-
     </section>
 
     <!-- Stats -->
@@ -219,11 +216,8 @@
     <!-- Product Modal -->
 
 <div class="modal" id="productModal">
-
     <div class="modal-content">
-
         <span class="close-btn">&times;</span>
-
         <img id="modalImage" src="" alt="">
         <div id="thumbnailContainer"></div>
         <h2 id="modalTitle"></h2>
@@ -249,13 +243,10 @@
 
 </div>
 <div class="sell-modal" id="sellModal">
-
     <div class="sell-content">
-
         <span class="close-sell">&times;</span>
         <h2>Sell Your Item</h2>
        <form id="sellForm">
-
     <input
     type="text"
     id="productName"
@@ -314,9 +305,7 @@
     id="contact"
     placeholder="Contact Number"
     required>
-
    <label>Product Images (Max 5)</label>
-
 <input
     type="file"
     id="productImage"
@@ -340,9 +329,7 @@
     <!-- Footer -->
 
     <footer>
-
         <h2>CampusKart</h2>
-
         <p>
             Buy, Sell and Connect inside your campus.
         </p>
@@ -350,27 +337,19 @@
         <p>
             © 2026 CampusKart | Developed by Vikash Kumar
         </p>
-
     </footer>
 <div class="cart-sidebar">
-
     <div class="cart-header">
         <h2>🛒 My Cart</h2>
         <span class="close-cart">&times;</span>
     </div>
-
     <div class="cart-items">
-
     </div>
-
     <div class="cart-footer">
-
         <h3>
             Total: ₹<span id="totalPrice">0</span>
         </h3>
-
         <div class="cart-buttons">
-
             <button class="checkout-btn">
                 Checkout
             </button>
@@ -435,18 +414,12 @@
         support@campuskart.com
     </p>
 </div>
-
     </div>
-
 </div>   
 <div class="sell-modal" id="learnModal">
-
     <div class="sell-content">
-
         <span class="close-learn">&times;</span>
-
        <h2>🚀 About CampusKart</h2>
-
 <p>
 CampusKart is a student-driven marketplace designed
 to simplify buying and selling within the campus community.
@@ -510,15 +483,10 @@ instead of unnecessary purchases.
     </div>
     </div>
 <div id="imagePreview" class="image-preview">
-
     <span id="closePreview">&times;</span>
-
     <span id="prevPreview">❮</span>
-
     <img id="previewImg">
-
     <span id="nextPreview">❯</span>
-
 </div>
 <div class="sell-modal" id="editModal">
 
@@ -545,9 +513,7 @@ instead of unnecessary purchases.
         </button>
 
     </div>
-
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>

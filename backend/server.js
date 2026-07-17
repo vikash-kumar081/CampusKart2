@@ -52,34 +52,24 @@ const upload = multer({
     }
 });
 app.get("/products", (req, res) => {
-
     const sql = "SELECT * FROM products";
-
     db.query(sql, (err, result) => {
-
         if(err){
             console.log(err);
             return res.status(500).json(err);
         }
-
         res.json(result);
-
     });
 
 });
 app.get("/pending-products", (req, res) => {
-
     const sql = "SELECT * FROM pending_products";
-
     db.query(sql, (err, result) => {
-
         if(err){
             console.log(err);
             return res.status(500).json(err);
         }
-
         res.json(result);
-
     });
 
 });
@@ -136,7 +126,6 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
                     console.log(err);
                     return res.status(500).json(err);
                 }
-
                 res.json({
                     message:
                     "Product Added Successfully"
@@ -148,9 +137,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     }
 );
 app.get("/approve/:id", (req, res) => {
-
     const id = req.params.id;
-
     const getSql =
     "SELECT * FROM pending_products WHERE product_id = ?";
 
@@ -185,7 +172,6 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
      product.user_name,
     product.contact,
     product.description,
-   
 ],
             (err) => {
 
@@ -241,40 +227,30 @@ app.listen(PORT, () => {
 app.post("/login", (req, res) => {
 
     const { name, email } = req.body;
-
     const checkUser =
     "SELECT * FROM users WHERE email = ?";
-
     db.query(checkUser, [email], (err, result) => {
-
         if(err){
             return res.status(500).json(err);
         }
-
         if(result.length > 0){
-
             return res.json({
                 message: "Login Success"
             });
 
         }
-
         const insertUser =
         "INSERT INTO users (name, email) VALUES (?, ?)";
-
         db.query(
             insertUser,
             [name, email],
             (err) => {
-
                 if(err){
                     return res.status(500).json(err);
                 }
-
                 res.json({
                     message: "Account Created"
                 });
-
             }
         );
 
@@ -282,82 +258,58 @@ app.post("/login", (req, res) => {
 
 });
 app.post("/wishlist", (req, res) => {
-
     const { user_email, product_id } = req.body;
-
     const checkSql =
     "SELECT * FROM wishlist WHERE user_email = ? AND product_id = ?";
-
     db.query(
         checkSql,
         [user_email, product_id],
         (err, result) => {
-
             if(err){
                 return res.status(500).json(err);
             }
-
             if(result.length > 0){
-
                 return res.json({
                     message: "Already In Wishlist"
                 });
 
             }
-
             const sql =
             "INSERT INTO wishlist (user_email, product_id) VALUES (?, ?)";
-
             db.query(
                 sql,
                 [user_email, product_id],
                 (err) => {
-
                     if(err){
                         return res.status(500).json(err);
                     }
-
                     res.json({
                         message: "Added To Wishlist"
                     });
-
                 }
             );
-
         }
     );
-
 });
 app.get("/wishlist/:email", (req, res) => {
-
     const email = req.params.email;
-
     const sql =
     "SELECT * FROM wishlist WHERE user_email = ?";
-
     db.query(sql, [email], (err, result) => {
-
         if(err){
             return res.status(500).json(err);
         }
-
         res.json(result);
-
     });
-
 });
 app.delete("/wishlist", (req, res) => {
-
     const { user_email, product_id } = req.body;
-
     const sql =
     "DELETE FROM wishlist WHERE user_email = ? AND product_id = ?";
-
     db.query(
         sql,
         [user_email, product_id],
         (err) => {
-
             if(err){
                 return res.status(500).json(err);
             }
@@ -365,18 +317,13 @@ app.delete("/wishlist", (req, res) => {
             res.json({
                 message: "Removed From Wishlist"
             });
-
         }
     );
-
 });
 app.post("/cart", (req, res) => {
-
     const { user_email, product_id } = req.body;
-
     const checkSql =
     "SELECT * FROM cart_items WHERE user_email = ? AND product_id = ?";
-
     db.query(
         checkSql,
         [user_email, product_id],
@@ -385,90 +332,64 @@ app.post("/cart", (req, res) => {
             if(err){
                 return res.status(500).json(err);
             }
-
             if(result.length > 0){
-
                 return res.json({
                     message: "Already In Cart"
                 });
-
             }
-
             const sql =
             "INSERT INTO cart_items (user_email, product_id) VALUES (?, ?)";
-
             db.query(
                 sql,
                 [user_email, product_id],
                 (err) => {
-
                     if(err){
                         return res.status(500).json(err);
                     }
-
                     res.json({
                         message: "Added To Cart"
                     });
-
                 }
             );
-
         }
     );
 
 });
 app.delete("/cart", (req, res) => {
-
     const { user_email, product_id } = req.body;
-
     const sql =
     "DELETE FROM cart_items WHERE user_email = ? AND product_id = ?";
-
     db.query(
         sql,
         [user_email, product_id],
         (err) => {
-
             if(err){
                 return res.status(500).json(err);
             }
-
             res.json({
                 message: "Removed From Cart"
             });
-
         }
     );
-
 });
 app.get("/cart/:email", (req, res) => {
-
     const email = req.params.email;
-
     const sql =
     "SELECT * FROM cart_items WHERE user_email = ?";
-
     db.query(sql, [email], (err, result) => {
-
         if(err){
             return res.status(500).json(err);
         }
-
         res.json(result);
-
     });
-
 });
 app.put("/product/:id", (req, res) => {
-
     const id = req.params.id;
-
     const {
         price,
         contact,
         description
     } = req.body;
-
     const sql = `
     UPDATE products
     SET price = ?,
@@ -476,7 +397,6 @@ app.put("/product/:id", (req, res) => {
         description = ?
     WHERE product_id = ?
     `;
-
     db.query(
         sql,
         [
@@ -486,37 +406,27 @@ app.put("/product/:id", (req, res) => {
             id
         ],
         (err) => {
-
             if(err){
                 return res.status(500).json(err);
             }
-
             res.json({
                 message:
                 "Product Updated Successfully"
             });
-
         }
     );
 
 });
 app.delete("/product/:id", (req, res) => {
-
     const id = req.params.id;
-
     const sql =
     "DELETE FROM products WHERE product_id = ?";
-
     db.query(sql, [id], (err) => {
-
         if(err){
             return res.status(500).json(err);
         }
-
         res.json({
             message: "Product Deleted Successfully"
         });
-
     });
-
 });

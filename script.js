@@ -1,4 +1,4 @@
-// SEARCH FUNCTIONcard.dataset.price || "";
+// SEARCH FUNCTION
 
 console.log("JS Loaded");
 let allImages = [];
@@ -10,7 +10,6 @@ searchInput.addEventListener("keyup", () => {
     document
     .querySelectorAll("#productsContainer .card")
     .forEach(card => {
-
         const title = card.querySelector("h3")
         .textContent
         .toLowerCase();
@@ -24,13 +23,12 @@ searchInput.addEventListener("keyup", () => {
 
 });
 /* =========================
-        CART SYSTEM
+      CART SYSTEM
  =========================*/
 
 let cartCount = 0;
 const cartCounter =
 document.querySelector(".cart-count");
-
 
 const modal = document.getElementById("productModal");
 const closeBtn = document.querySelector(".close-btn");
@@ -92,14 +90,12 @@ if(images.length > 0){
 images[0].trim();
 
 }else{
-
     modalImage.src =
     card.querySelector("img").src;
 
 }
 
 thumbnailContainer.innerHTML = "";
-
 images.forEach(img => {
 
     thumbnailContainer.innerHTML += `
@@ -119,13 +115,11 @@ productDescription.textContent =
 "Description: " + (card.dataset.description || "No Description");
 
         modal.style.display = "flex";
-
     }
 
 });
 
 closeBtn.addEventListener("click", () => {
-
     modal.style.display = "none";
 
 });
@@ -156,7 +150,6 @@ const buyBtn =
 document.querySelector(".buy-btn");
 
 buyBtn.addEventListener("click", () => {
-
     alert(
         "✅ Thank you for shopping on CampusKart!"
     );
@@ -165,7 +158,6 @@ buyBtn.addEventListener("click", () => {
 addToCartBtn.addEventListener(
     "click",
     async () => {
-
         const userEmail =
         localStorage.getItem("userEmail");
         if(!userEmail){
@@ -273,25 +265,17 @@ document.querySelector('a[href="#home"]').addEventListener("click", () => {
   document.getElementById("productsContainer")
 .querySelectorAll(".card")
 .forEach(card => { 
-
         card.style.display = "block";
-
     });
-
 });
 document.querySelector('a[href="#favorites"]').addEventListener("click", (e) => {
-
     e.preventDefault();
-
     document.querySelectorAll(".card").forEach(card => {
-
         const heart = card.querySelector(".wishlist");
-
         card.style.display =
             heart.classList.contains("active")
             ? "block"
             : "none";
-
     });
 
     document.getElementById("items").scrollIntoView({
@@ -300,15 +284,11 @@ document.querySelector('a[href="#favorites"]').addEventListener("click", (e) => 
 
 });
 searchInput.addEventListener("keypress", (e) => {
-
     if(e.key === "Enter"){
-
         document.getElementById("items").scrollIntoView({
             behavior: "smooth"
         });
-
     }
-
 });
 const sellBtn =
 document.getElementById("sellBtn");
@@ -320,17 +300,12 @@ const closeSell =
 document.querySelector(".close-sell");
 
 sellBtn.addEventListener("click",(e)=>{
-
     e.preventDefault();
-
     sellModal.classList.add("active");
-
 });
 
 closeSell.addEventListener("click",()=>{
-
     sellModal.classList.remove("active");
-
 });
 const helpBtn =
 document.getElementById("helpBtn");
@@ -342,17 +317,12 @@ const closeHelp =
 document.querySelector(".close-help");
 
 helpBtn.addEventListener("click",(e)=>{
-
     e.preventDefault();
-
     helpModal.classList.add("active");
-
 });
 
 closeHelp.addEventListener("click",()=>{
-
     helpModal.classList.remove("active");
-
 });
 
 const learnBtn =
@@ -365,19 +335,14 @@ const closeLearn =
 document.querySelector(".close-learn");
 
 learnBtn.addEventListener("click",()=>{
-
     learnModal.classList.add("active");
-
 });
 
 closeLearn.addEventListener("click",()=>{
-
     learnModal.classList.remove("active");
-
 });
 const loginBtn =
 document.getElementById("loginBtn");
-
 const loginModal =
 document.getElementById("loginModal");
 
@@ -385,15 +350,11 @@ const closeLogin =
 document.querySelector(".close-login");
 
 loginBtn.addEventListener("click",(e)=>{
-
     e.preventDefault();
-
     loginModal.classList.add("active");
-
 });
 
 closeLogin.addEventListener("click",()=>{
-
     loginModal.classList.remove("active");
 
 });
@@ -402,15 +363,11 @@ document
 .addEventListener("submit", async (e) => {
 
     e.preventDefault();
-
     const fullName =
     document.getElementById("userName").value;
-
     const email =
     document.getElementById("userEmail").value;
-
     try {
-
         const response = await fetch(
             "/login",
             {
@@ -424,9 +381,7 @@ document
                 })
             }
         );
-
-        const data = await response.json();
-
+    const data = await response.json();
         localStorage.setItem(
             "userName",
             fullName
@@ -439,77 +394,54 @@ document
 
         const firstName =
         fullName.split(" ")[0];
-
         loginBtn.innerHTML =
         `<i class="fa-solid fa-user"></i> ${firstName}`;
-
         loginModal.classList.remove("active");
-
         alert(data.message);
 
     } catch(error) {
-
         console.log(error);
         alert("Login Error");
-
     }
-
 });
 const savedName =
 localStorage.getItem("userName");
 
 if(savedName){
-
     const firstName =
     savedName.split(" ")[0];
-
     loginBtn.innerHTML =
     `<i class="fa-solid fa-user"></i> ${firstName}`;
-
 }
 const themeToggle =
 document.getElementById("themeToggle");
-
 themeToggle.addEventListener("click",(e)=>{
-
     e.preventDefault();
-
     document.body.classList.toggle("dark-mode");
-
     themeToggle.textContent =
     document.body.classList.contains("dark-mode")
     ? "☀️ Light Mode"
     : "🌙 Dark Mode";
-
 });
 const imageInput =
 document.getElementById("productImage");
 
 imageInput.addEventListener("change", () => {
-
     const newFiles =
     Array.from(imageInput.files);
-
     allImages.push(...newFiles);
-
     renderImages();
 
 });
 function renderImages(){
-
     const container =
     document.getElementById("selectedImages");
-
     container.innerHTML = "";
-
     allImages.forEach((file,index)=>{
-
         const imageUrl =
         URL.createObjectURL(file);
-
        container.innerHTML += `
 <div class="preview-box">
-
     <img
     src="${imageUrl}"
     class="preview-image sell-preview"
@@ -533,14 +465,11 @@ document.querySelector(
 );
 
 const sellForm = document.getElementById("sellForm");
-
 sellForm.addEventListener("submit", async (e) => {
-
     e.preventDefault();
      submitBtn.disabled = true;
     submitBtn.innerText = "Uploading Images...";
     const formData = new FormData();
-
     formData.append(
         "product_name",
         document.getElementById("productName").value
@@ -573,17 +502,12 @@ formData.append(
 );
 
 allImages.forEach(image => {
-
     formData.append(
         "images",
         image
     );
-
 });
-
-
     try {
-
         const response = await fetch(
             "/add-product",
             {
@@ -591,53 +515,39 @@ allImages.forEach(image => {
                 body: formData
             }
         );
-
         const data = await response.json();
         alert(data.message);
         submitBtn.disabled = false;
 submitBtn.innerText = "Submit Product";
         sellForm.reset();
 allImages = [];
-
 document.getElementById(
     "selectedImages"
 ).innerHTML = "";
     }catch (error) {
-
     console.log(error);
-
     submitBtn.disabled = false;
     submitBtn.innerText = "Submit Product";
-        
     alert("Error adding product");
-
 }
 
 });
 async function loadProducts() {
-
     try {
-
         const response = await fetch(
             "/products"
         );
-
         const products = await response.json();
-
         const container =
         document.getElementById(
             "productsContainer"
         );
-
         container.innerHTML = "";
-
             products.forEach(product => {
-
     const firstImage =
     product.images
     ? product.images.split(",")[0].trim()
     : product.image;
-
    const imageUrl =
 firstImage
 ? firstImage
@@ -651,17 +561,12 @@ data-contact="${product.contact || ''}"
 data-description="${product.description || ''}"
 data-username="${product.user_name || ''}"
 data-images="${product.images || ''}">
-
     <span class="wishlist">🤍</span>
-
     <img src="${imageUrl}">
-
     <h3>${product.product_name}</h3>
-
     <p class="product-category">
         ${product.category}
     </p>
-
     <p class="price">
         ₹${product.price}
     </p>
@@ -669,7 +574,6 @@ data-images="${product.images || ''}">
     <button class="details-btn">
         View Details
     </button>
-
 </div>
 `;
 });
@@ -679,44 +583,29 @@ data-images="${product.images || ''}">
     }
 }
 async function loadCart() {
-
     const userEmail =
     localStorage.getItem("userEmail");
-
     if(!userEmail) return;
-
     try {
-
         const response = await fetch(
             `/cart/${userEmail}`
         );
-
         const cartData = await response.json();
-
         cartItems.innerHTML = "";
         cartCount = 0;
         total = 0;
-       
-
         cartData.forEach(item => {
-
             const card =
             document.querySelector(
                 `.card[data-id="${item.product_id}"]`
             );
-
             if(!card) return;
-
             const productName =
             card.querySelector("h3").textContent;
 
             const priceText =
             card.querySelector(".price").textContent;
-
-          
-
             cartCount++;
-
             const itemDiv =
             document.createElement("div");
 
@@ -769,46 +658,32 @@ async function loadCart() {
     );
 
     totalPrice.textContent = total;
-
     cartItems.innerHTML = "";
-    
     await loadCart();
 });
             total += parseInt(
                 priceText.replace("₹","")
             );
-
         });
-
         cartCounter.textContent = cartCount;
         totalPrice.textContent = total;
-
     } catch(error) {
-
         console.log(error);
-
     }
 }
 
 async function loadWishlist() {
-
     const userEmail =
     localStorage.getItem("userEmail");
-
     if(!userEmail) return;
-
     try{
-
         const response =
         await fetch(
             `/wishlist/${userEmail}`
         );
-
         const wishlistData =
         await response.json();
-
         wishlistData.forEach(item => {
-
             const card =
             document.querySelector(
                 `.card[data-id="${item.product_id}"]`
@@ -818,62 +693,43 @@ async function loadWishlist() {
 
                 const heart =
                 card.querySelector(".wishlist");
-
                 heart.classList.add("active");
                 heart.textContent = "💚";
             }
-        });
-     
-
+        }); 
     }catch(error){
-
         console.log(error);
 
     }
 }
 async function init(){
-
     await loadProducts();
-
-    
     await loadWishlist();
-
     await loadCart();
-
 }
 
 init();
 async function loadMyProducts() {
-
     console.log("My Products Clicked");
-
     const userEmail =
     localStorage.getItem("userEmail");
-
     if(!userEmail){
         alert("Please Login First");
         return;
     }
 
     try {
-
         const response = await fetch(
             `/my-products/${userEmail}`
         );
-
         const products =
         await response.json();
-
         console.log(products);
-
         const container =
         document.getElementById("productsContainer");
-
         container.innerHTML = "";
-
         if(products.length === 0){
-
-            container.innerHTML = `
+        container.innerHTML = `
                 <h2 style="text-align:center">
                     No Products Found
                 </h2>
@@ -1016,44 +872,32 @@ closePreview.addEventListener("click",()=>{
 imagePreview.addEventListener("click",(e)=>{
 
     if(e.target === imagePreview){
-
         imagePreview.style.display =
         "none";
-
     }
 
 });
 document
 .querySelectorAll(".category")
 .forEach(category => {
-
     category.addEventListener("click", () => {
-
        const selected =
-            category.dataset.category;
+        category.dataset.category;
         document
         .querySelectorAll(".card")
-        .forEach(card => {
-            
+        .forEach(card => {   
             if(
                 selected === "All" ||
                 card.dataset.category === selected
             ){
-
                 card.style.display =
                 "block";
-
             }else{
-
                 card.style.display =
                 "none";
-
             }
-
         });
-
     });
-
 });
 const editModal =
 document.getElementById("editModal");
@@ -1079,38 +923,29 @@ closeEdit.addEventListener("click",()=>{
 updateBtn.addEventListener(
     "click",
     async () => {
-
         try{
-
             const response =
             await fetch(
                 `/product/${currentProductId}`,
                 {
                     method: "PUT",
-
                     headers:{
                         "Content-Type":
                         "application/json"
                     },
-
                     body: JSON.stringify({
-
                         price:
                         editPrice.value,
-
                         contact:
                         editContact.value,
-
                         description:
                         editDescription.value
-
                     })
                 }
             );
 
             const data =
             await response.json();
-
             alert(data.message);
 
             editModal.style.display =
@@ -1119,79 +954,92 @@ updateBtn.addEventListener(
             loadMyProducts();
 
         }catch(error){
-
-            console.log(error);
-
+        console.log(error);
             alert("Update Failed");
-
         }
-
     }
 );
 document.addEventListener("click",(e)=>{
 
     if(e.target.classList.contains("thumb")){
         if(e.target.classList.contains("thumb")){
-
     previewIndex =
     Array.from(
         document.querySelectorAll(".thumb")
     ).indexOf(e.target);
-
     modalImage.src = e.target.src;
-
 }
-      
-
     }
 
 });
 document.addEventListener("click",(e)=>{
-
     if(e.target.classList.contains("remove-image")){
-
-        const index =
+     const index =
         Number(e.target.dataset.index);
-
         allImages.splice(index,1);
-
         renderImages();
-
     }
 
 });
 document.addEventListener("click",(e)=>{
-
     if(e.target.classList.contains("sell-preview")){
-
         previewImg.src =
         e.target.dataset.src;
-
         imagePreview.style.display =
         "flex";
-
     }
 
 });
 nextPreview.addEventListener("click",()=>{
-
     if(previewImages.length === 0) return;
-
     previewIndex =
     (previewIndex + 1)
     % previewImages.length;
-
     previewImg.src =
     previewImages[previewIndex].trim();
 
 });
 prevPreview.addEventListener("click",()=>{
-
     if(previewImages.length === 0) return;
-
     previewIndex =
     (previewIndex - 1 + previewImages.length)
     % previewImages.length;
 previewImg.src =
 previewImages[previewIndex].trim();
 });
+const menuToggle =
+document.querySelector(".menu-toggle");
+
+const menu =
+document.querySelector(".menu");
+if(menuToggle && menu){
+    menuToggle.addEventListener("click",()=>{
+        menu.classList.toggle("active");
+    });
+
+}
+document.querySelectorAll(".menu a")
+.forEach(link=>{
+    link.addEventListener("click",()=>{
+        menu.classList.remove("active");
+    });
+
+});
+document.addEventListener("click",(e)=>{
+    if(
+        menu.classList.contains("active") &&
+        !menu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+    ){
+        menu.classList.remove("active");
+    }
+});
+const closeMenu =
+document.querySelector(".close-menu");
+
+if(closeMenu){
+    closeMenu.addEventListener("click",()=>{
+        menu.classList.remove("active");
+
+    });
+}
