@@ -1274,7 +1274,9 @@ body.dark-mode .price{
         #3a3a3a 50%,
         #2a2a2a 75%
     );
+
     background-size:200% 100%;
+
     animation:skeleton 1.2s infinite;
 }
 

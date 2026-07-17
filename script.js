@@ -457,7 +457,6 @@ function renderImages(){
 </div>
 `;
     });
-
 }
 const submitBtn =
 document.querySelector(
@@ -647,12 +646,9 @@ async function loadCart() {
     } catch(error){
         console.log(error);
     }
-
     itemDiv.remove();
-
     cartCount--;
     cartCounter.textContent = cartCount;
-
     total -= parseInt(
         priceText.replace("₹","")
     );
@@ -855,13 +851,10 @@ document.addEventListener("click", async (e) => {
     }
 });
 modalImage.addEventListener("click",()=>{
-
     previewImg.src =
     modalImage.src;
-
     imagePreview.style.display =
     "flex";
-
 });
 closePreview.addEventListener("click",()=>{
 
@@ -870,12 +863,10 @@ closePreview.addEventListener("click",()=>{
 
 });
 imagePreview.addEventListener("click",(e)=>{
-
     if(e.target === imagePreview){
         imagePreview.style.display =
         "none";
     }
-
 });
 document
 .querySelectorAll(".category")
@@ -947,12 +938,9 @@ updateBtn.addEventListener(
             const data =
             await response.json();
             alert(data.message);
-
             editModal.style.display =
             "none";
-
             loadMyProducts();
-
         }catch(error){
         console.log(error);
             alert("Update Failed");
@@ -960,7 +948,6 @@ updateBtn.addEventListener(
     }
 );
 document.addEventListener("click",(e)=>{
-
     if(e.target.classList.contains("thumb")){
         if(e.target.classList.contains("thumb")){
     previewIndex =
@@ -988,7 +975,6 @@ document.addEventListener("click",(e)=>{
         imagePreview.style.display =
         "flex";
     }
-
 });
 nextPreview.addEventListener("click",()=>{
     if(previewImages.length === 0) return;
@@ -997,7 +983,6 @@ nextPreview.addEventListener("click",()=>{
     % previewImages.length;
     previewImg.src =
     previewImages[previewIndex].trim();
-
 });
 prevPreview.addEventListener("click",()=>{
     if(previewImages.length === 0) return;
@@ -1040,6 +1025,5 @@ document.querySelector(".close-menu");
 if(closeMenu){
     closeMenu.addEventListener("click",()=>{
         menu.classList.remove("active");
-
     });
 }
