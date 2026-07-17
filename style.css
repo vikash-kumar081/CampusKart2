@@ -294,6 +294,7 @@ body{
     width:100%;
     height:220px;
     object-fit:cover;
+     display:block;
 }
 .card h3{
     font-size:20px;
@@ -587,10 +588,15 @@ footer p{
     border-radius:10px;
 }
 /* WISHLIST */
+.card{
+    overflow:hidden;
+}
+
 .wishlist{
-    font-size:28px;
-    top:8px;
-    right:8px;
+    position:absolute;
+    top:5px;
+    right:5px;
+    z-index:100;
 }
 /* FEATURES */
 .features{
@@ -1400,4 +1406,17 @@ body.dark-mode .price{
 }
 .menu-header span{
     color:#22c55e;
+}
+.card{
+    position:relative;
+    overflow:hidden;
+}
+
+.wishlist{
+    position:absolute;
+    top:8px;
+    right:8px;
+    z-index:999;
+    font-size:26px;
+    color:white;
 }
