@@ -1389,7 +1389,9 @@ body.dark-mode .price{
 .close-menu{
     display:none;
 }
-
+.menu-header{
+    display:none;
+ }
 @media(max-width:768px){
     .close-menu{
         display:block;
@@ -1398,22 +1400,23 @@ body.dark-mode .price{
         cursor:pointer;
         margin-bottom:25px;
     }
-}
-.menu-header{
-    margin-bottom:20px;
-}
-.menu-header h2{
+    .menu-header{
+        display: block;
+        margin-bottom: 20px;
+    }
+    .menu-header h2{
     color:white;
     font-size:24px;
 }
 .menu-header span{
     color:#22c55e;
 }
+}
+
 .card{
     position:relative;
     overflow:hidden;
 }
-
 .wishlist{
     position:absolute;
     top:8px;
@@ -1430,4 +1433,23 @@ body.dark-mode .price{
 .wishlist{
     -webkit-user-select:none;
     user-select:none;
+}
+.cart-link{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.cart-count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #22c55e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
 }
