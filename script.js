@@ -1,7 +1,7 @@
 // SEARCH FUNCTION
 
 console.log("JS Loaded");
-const API_URL = "http://localhost:5000";
+const API_URL = "https://campuskart2.onrender.com";
 let allImages = [];
 const searchInput = document.querySelector(".search-box input");
 searchInput.addEventListener("keyup", () => {
