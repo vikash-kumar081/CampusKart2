@@ -40,7 +40,10 @@ const storage = new CloudinaryStorage({
     params: async (req, file) => ({
         folder: "campuskart",
         allowed_formats: ["jpg", "jpeg", "png", "webp"],
-        resource_type: "image"
+        resource_type: "image",
+
+        quality: "auto:best",
+        fetch_format: "auto"
     })
 });
 

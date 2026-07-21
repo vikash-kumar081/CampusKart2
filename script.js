@@ -346,18 +346,59 @@ const loginBtn =
 document.getElementById("loginBtn");
 const loginModal =
 document.getElementById("loginModal");
+const profileMenu =
+document.querySelector(".profile-menu");
 
+const profileDropdown =
+document.getElementById("profileDropdown");
+
+const profileName =
+document.getElementById("profileName");
+
+const profileEmail =
+document.getElementById("profileEmail");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    loginBtn.innerHTML =
+    `<i class="fa-solid fa-user"></i> Login`;
+    loginBtn.classList.remove("logged-in");
+    profileMenu.classList.remove("active");
+    profileName.textContent = "";
+    profileEmail.textContent = "";
+    alert("Logged out successfully");
+});
 const closeLogin =
 document.querySelector(".close-login");
 
 loginBtn.addEventListener("click",(e)=>{
     e.preventDefault();
-    loginModal.classList.add("active");
+
+    const savedName = localStorage.getItem("userName");
+
+    if(savedName){
+        profileMenu.classList.toggle("active");
+    }else{
+        loginModal.classList.add("active");
+    }
 });
 
 closeLogin.addEventListener("click",()=>{
     loginModal.classList.remove("active");
 
+});
+document.addEventListener("click",(e)=>{
+    if(
+        profileMenu &&
+        !profileMenu.contains(e.target)
+    ){
+        profileMenu.classList.remove("active");
+    }
 });
 document
 .getElementById("loginForm")
@@ -394,11 +435,33 @@ document
         );
 
         const firstName =
-        fullName.split(" ")[0];
-        loginBtn.innerHTML =
-        `<i class="fa-solid fa-user"></i> ${firstName}`;
-        loginModal.classList.remove("active");
-        alert(data.message);
+fullName.split(" ")[0];
+
+const initials =
+fullName
+.split(" ")
+.map(word => word[0])
+.join("")
+.toUpperCase();
+
+if(window.innerWidth <= 768){
+
+    loginBtn.textContent = initials;
+    loginBtn.classList.add("logged-in");
+
+}else{
+
+    loginBtn.innerHTML =
+    `<i class="fa-solid fa-user"></i> ${firstName}`;
+
+}
+
+profileName.textContent = fullName;
+profileEmail.textContent = email;
+
+loginModal.classList.remove("active");
+
+alert(data.message);
 
     } catch(error) {
         console.log(error);
@@ -408,22 +471,65 @@ document
 const savedName =
 localStorage.getItem("userName");
 
+const savedEmail =
+localStorage.getItem("userEmail");
+
 if(savedName){
+
     const firstName =
     savedName.split(" ")[0];
+
+    const initials =
+    savedName
+    .split(" ")
+    .map(word => word[0])
+    .join("")
+    .toUpperCase();
+
+    if(window.innerWidth <= 768){
+    loginBtn.textContent = initials;
+    loginBtn.classList.add("logged-in");
+}else{
     loginBtn.innerHTML =
     `<i class="fa-solid fa-user"></i> ${firstName}`;
 }
+
+    profileName.textContent =
+    savedName;
+
+    profileEmail.textContent =
+    savedEmail;
+}
 const themeToggle =
 document.getElementById("themeToggle");
-themeToggle.addEventListener("click",(e)=>{
-    e.preventDefault();
-    document.body.classList.toggle("dark-mode");
-    themeToggle.textContent =
-    document.body.classList.contains("dark-mode")
-    ? "☀️ Light Mode"
-    : "🌙 Dark Mode";
+themeToggle.addEventListener("change",()=>{
+
+    document.body.classList.toggle(
+        "dark-mode",
+        themeToggle.checked
+    );
+
 });
+    
+const desktopTheme =
+document.getElementById("desktopTheme");
+
+if(desktopTheme){
+    desktopTheme.addEventListener("click",()=>{
+
+        themeToggle.checked = !themeToggle.checked;
+
+        document.body.classList.toggle(
+            "dark-mode",
+            themeToggle.checked
+        );
+
+        desktopTheme.innerHTML = themeToggle.checked
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
+
+    });
+}
 const imageInput =
 document.getElementById("productImage");
 
@@ -500,13 +606,19 @@ formData.append(
     "user_name",
     localStorage.getItem("userName")
 );
+const options = {
+    maxSizeMB: 2,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+    initialQuality: 0.95
+};
 
-allImages.forEach(image => {
-    formData.append(
-        "images",
-        image
-    );
-});
+for (const image of allImages) {
+    const compressedImage =
+        await imageCompression(image, options);
+
+    formData.append("images", compressedImage);
+}
     try {
         const response =await fetch(
     `${API_URL}/add-product`,
@@ -788,10 +900,11 @@ firstImage
     }
 }
 document
-.getElementById("myProductsBtn")
+.getElementById("dropdownMyProducts")
 .addEventListener("click", async (e) => {
     e.preventDefault();
     await loadMyProducts();
+    profileMenu.classList.remove("active");
 });
 document.addEventListener("click", async (e) => {
      if(e.target.classList.contains("edit-btn")){
@@ -998,19 +1111,20 @@ document.querySelector(".menu-toggle");
 
 const menu =
 document.querySelector(".menu");
+
 if(menuToggle && menu){
     menuToggle.addEventListener("click",()=>{
+
         menu.classList.toggle("active");
-    });
 
+        if(menu.classList.contains("active")){
+            document.body.style.overflow = "hidden";
+        }else{
+            document.body.style.overflow = "";
+        }
+
+    });
 }
-document.querySelectorAll(".menu a")
-.forEach(link=>{
-    link.addEventListener("click",()=>{
-        menu.classList.remove("active");
-    });
-
-});
 document.addEventListener("click",(e)=>{
     if(
         menu.classList.contains("active") &&
@@ -1018,13 +1132,22 @@ document.addEventListener("click",(e)=>{
         !menuToggle.contains(e.target)
     ){
         menu.classList.remove("active");
+        document.body.style.overflow = "";
     }
 });
 const closeMenu =
 document.querySelector(".close-menu");
 
 if(closeMenu){
-    closeMenu.addEventListener("click",()=>{
-        menu.classList.remove("active");
-    });
+   closeMenu.addEventListener("click",()=>{
+    menu.classList.remove("active");
+    document.body.style.overflow = "";
+});
 }
+document
+.getElementById("dropdownMyProducts")
+.addEventListener("click", async (e) => {
+    e.preventDefault();
+    await loadMyProducts();
+    profileMenu.classList.remove("active");
+});

@@ -45,10 +45,42 @@
                 🛒 Cart
                 <span class="cart-count">0</span>
             </a>
-           <a href="#" id="loginBtn">
-                <i class="fa-solid fa-user"></i>
-                Login
-            </a>
+          <div class="profile-menu">
+
+    <a href="#" id="loginBtn">
+        <i class="fa-solid fa-user"></i>
+        Login
+    </a>
+
+    <div class="profile-dropdown" id="profileDropdown">
+
+        <div class="profile-header">
+
+            <h4 id="profileName">
+                Vikash Kumar
+            </h4>
+
+            <p id="profileEmail">
+                vikash@email.com
+            </p>
+
+        </div>
+
+        <hr>
+
+        <a href="#" id="dropdownMyProducts">
+            <i class="fa-solid fa-box"></i>
+            My Products
+        </a>
+
+        <a href="#" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+
+</div>
         </div>
 
     </nav>
@@ -56,23 +88,64 @@
     <!-- Menu -->
 
     <section class="menu">
-        <span class="close-menu">&times;</span>
-        <div class="menu-header">
-    <h2>Campus<span>Kart</span></h2>
-</div>
-       <a href="#home">🏠 Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#" id="myProductsBtn">
-            My Products
-        </a>
-        <a href="#orders">My Orders</a>
-        <a href="#favorites">Favorites</a>
-        <a href="#help" id="helpBtn">Help</a>
-        <a href="#" id="themeToggle">
-        <i class="fa-solid fa-moon"></i>
-        </a>
 
-    </section>
+    <div class="menu-header">
+
+        <span class="close-menu">&times;</span>
+
+        <h2>
+            Campus<span>Kart</span>
+        </h2>
+
+    </div>
+        <a href="#home">
+    🏡 Home
+</a>
+
+<a href="#categories">
+    📂 Categories
+</a>
+
+<a href="#" id="myProductsBtn">
+    🛍️ My Products
+</a>
+
+<a href="#orders">
+    📦 My Orders
+</a>
+
+<a href="#favorites">
+    💖 Favorites
+</a>
+
+<a href="#" id="helpBtn">
+   <i class="fa-regular fa-circle-question"></i>Help
+</a>
+
+<div class="desktop-theme" id="desktopTheme">
+    <i class="fa-solid fa-moon"></i>
+</div>
+
+   <div class="menu-dark">
+
+    <span>
+        <i class="fa-solid fa-moon"></i>
+        Dark Mode
+    </span>
+    <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+    </label>
+    
+</div>
+
+    <hr>
+    <a href="#" id="mobileLogout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </a>
+
+</section>
 
     <!-- Hero Section -->
 
@@ -514,6 +587,7 @@ instead of unnecessary purchases.
 
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
