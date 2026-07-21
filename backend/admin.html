@@ -8,7 +8,6 @@
     <title>CampusKart Admin Panel</title>
 
     <style>
-
         *{
             margin:0;
             padding:0;
@@ -195,7 +194,6 @@
 
 /* Mobile */
 @media(max-width:768px){
-
     .modal{
         padding:10px;
         align-items:flex-start;
@@ -248,45 +246,32 @@
         transform:scale(1);
     }
 }
-
     </style>
-
 </head>
 <body>
-
     <h1>📦 CampusKart Admin Panel</h1>
-
     <div id="pendingProducts"></div>
-
 <script>
 let allPendingProducts = [];
 async function loadPendingProducts(){
 
     try{
-
         const response =
         await fetch(
             "https://campuskart2.onrender.com/pending-products"
         );
-
         const products =
         await response.json();
         allPendingProducts = products;
         const container =
         document.getElementById("pendingProducts");
-
         container.innerHTML = "";
-
         if(products.length === 0){
-
             container.innerHTML =
             "<h2>No Pending Products</h2>";
-
             return;
         }
-
         products.forEach(product => {
-
            container.innerHTML += `
 <div class="card">
 
@@ -323,49 +308,30 @@ async function loadPendingProducts(){
 </div>
 `;
         });
-
     }
     catch(error){
-
         console.log(error);
-
         alert("Error Loading Products");
-
     }
-
 }
-
 async function approveProduct(id){
-
     try{
-
         await fetch(`/approve/${id}`);
-
         alert("✅ Product Approved");
-
         loadPendingProducts();
-
     }
     catch(error){
-
         console.log(error);
-
         alert("Error Approving Product");
-
     }
-
 }
 
 async function rejectProduct(id){
 
     try{
-
         await fetch(`/reject/${id}`);
-
         alert("❌ Product Rejected");
-
         loadPendingProducts();
-
     }
     catch(error){
         console.log(error);
@@ -422,41 +388,25 @@ function viewDetails(id){
     document.getElementById("detailsModal").style.display =
     "flex";
 }
-
-
 loadPendingProducts();
-
 </script>
-
 <div id="detailsModal" class="modal">
-
     <div class="modal-content">
-
         <span
 id="closeModal"
 class="close-modal"
 onclick="document.getElementById('detailsModal').style.display='none'">
 ×
 </span>
-
         <img id="mainImage" class="main-image">
-
         <div id="thumbContainer" class="thumbs"></div>
-
         <h2 id="modalTitle"></h2>
-
         <p id="modalPrice"></p>
-
         <p id="modalCategory"></p>
-
         <p id="modalSeller"></p>
-
         <p id="modalContact"></p>
-
         <p id="modalDescription"></p>
-
     </div>
-
 </div>
 
 </body>

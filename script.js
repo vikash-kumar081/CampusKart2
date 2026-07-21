@@ -1,6 +1,7 @@
 // SEARCH FUNCTION
 
 console.log("JS Loaded");
+const API_URL = "http://localhost:5000";
 let allImages = [];
 const searchInput = document.querySelector(".search-box input");
 searchInput.addEventListener("keyup", () => {
@@ -168,8 +169,8 @@ addToCartBtn.addEventListener(
         modal.dataset.id;
         try{
             const response =
-            await fetch(
-                "/cart",
+           await fetch(
+    `${API_URL}/cart`,
                 {
                     method: "POST",
                     headers:{
@@ -209,8 +210,8 @@ document.addEventListener("click", async (e) => {
             if(e.target.classList.contains("active")){
 
                 const response =
-                await fetch(
-                    "/wishlist",
+               await fetch(
+    `${API_URL}/wishlist`,
                     {
                         method: "DELETE",
                         headers:{
@@ -235,8 +236,8 @@ document.addEventListener("click", async (e) => {
             } else {
 
                 const response =
-                await fetch(
-                    "/wishlist",
+               await fetch(
+    `${API_URL}/wishlist`,
                     {
                         method: "POST",
                         headers:{
@@ -369,18 +370,18 @@ document
     document.getElementById("userEmail").value;
     try {
         const response = await fetch(
-            "/login",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: fullName,
-                    email: email
-                })
-            }
-        );
+    `${API_URL}/login`,
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: fullName,
+            email: email
+        })
+    }
+);
     const data = await response.json();
         localStorage.setItem(
             "userName",
@@ -507,8 +508,8 @@ allImages.forEach(image => {
     );
 });
     try {
-        const response = await fetch(
-            "/add-product",
+        const response =await fetch(
+    `${API_URL}/add-product`,
             {
                 method: "POST",
                 body: formData
@@ -533,9 +534,9 @@ document.getElementById(
 });
 async function loadProducts() {
     try {
-        const response = await fetch(
-            "/products"
-        );
+       const response = await fetch(
+    `${API_URL}/products`
+);
         const products = await response.json();
         const container =
         document.getElementById(
@@ -587,7 +588,7 @@ async function loadCart() {
     if(!userEmail) return;
     try {
         const response = await fetch(
-            `/cart/${userEmail}`
+    `${API_URL}/cart/${userEmail}`
         );
         const cartData = await response.json();
         cartItems.innerHTML = "";
@@ -628,8 +629,8 @@ async function loadCart() {
     console.log("Remove clicked");
     try {
 
-        await fetch(
-            "/cart",
+       await fetch(
+    `${API_URL}/cart`,
             {
                 method: "DELETE",
                 headers:{
@@ -674,8 +675,8 @@ async function loadWishlist() {
     if(!userEmail) return;
     try{
         const response =
-        await fetch(
-            `/wishlist/${userEmail}`
+       await fetch(
+    `${API_URL}/wishlist/${userEmail}`
         );
         const wishlistData =
         await response.json();
@@ -716,7 +717,7 @@ async function loadMyProducts() {
 
     try {
         const response = await fetch(
-            `/my-products/${userEmail}`
+    `${API_URL}/my-products/${userEmail}`
         );
         const products =
         await response.json();
@@ -828,13 +829,13 @@ document.addEventListener("click", async (e) => {
 
         try{
 
-            const response =
-            await fetch(
-                `/product/${productId}`,
-                {
-                    method: "DELETE"
-                }
-            );
+           const response =
+await fetch(
+    `${API_URL}/product/${productId}`,
+    {
+        method: "DELETE"
+    }
+);
 
             const data =
             await response.json();
@@ -917,7 +918,7 @@ updateBtn.addEventListener(
         try{
             const response =
             await fetch(
-                `/product/${currentProductId}`,
+    `${API_URL}/product/${currentProductId}`,
                 {
                     method: "PUT",
                     headers:{
