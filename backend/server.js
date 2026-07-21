@@ -35,20 +35,13 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
-
 const storage = new CloudinaryStorage({
     cloudinary,
-    params: {
+    params: async (req, file) => ({
         folder: "campuskart",
         allowed_formats: ["jpg", "jpeg", "png", "webp"],
-        transformation: [
-            {
-                width: 1200,
-                crop: "limit",
-                quality: "auto"
-            }
-        ]
-    }
+        resource_type: "image"
+    })
 });
 
 const upload = multer({
@@ -57,6 +50,7 @@ const upload = multer({
         fileSize: 10 * 1024 * 1024
     }
 });
+
 // =========================
 // PRODUCTS
 // =========================
@@ -91,11 +85,12 @@ app.get("/pending-products", async (req, res) => {
 // =========================
 app.post(
     "/add-product",
+
     upload.array("images", 5),
+
     async (req, res) => {
 
         try {
-
             const {
                 product_name,
                 price,
@@ -107,11 +102,11 @@ app.post(
             } = req.body;
 
             const stock = 1;
-
             const images =
-                req.files.length > 0
-                    ? req.files.map(file => file.path).join(",")
-                    : null;
+    req.files.length > 0
+        ? req.files.map(file => file.path).join(",")
+        : null;
+            
 
             await db.query(
                 `INSERT INTO pending_products
@@ -145,9 +140,10 @@ app.post(
                 message: "Product Added Successfully"
             });
         } catch (err) {
-            console.error(err);
-            res.status(500).json(err.message);
-        }
+    res.status(500).json({
+        message: err.message
+    });
+}
     }
 );
 // =========================
