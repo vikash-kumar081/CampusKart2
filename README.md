@@ -1,183 +1,208 @@
-CampusKart 2 – Full-Stack Student Marketplace Platform
+# 🎓 CampusKart – Full-Stack Student Marketplace Platform
 
-CampusKart 2 is a full-stack e-commerce marketplace designed specifically for college students. The platform enables students to buy, sell, and manage products within their campus ecosystem through a secure, scalable, and user-friendly web application.
+CampusKart is a full-stack marketplace built specifically for college students, enabling them to buy, sell, and manage products within their campus through a secure and user-friendly web application.
 
-The project was developed to address the challenge of finding affordable academic and daily-use products while creating a trusted student-to-student marketplace. It demonstrates end-to-end software development, including frontend design, backend development, database integration, authentication, and CRUD operations.
+The platform was developed to solve a common problem faced by students—finding affordable second-hand products such as laptops, books, calculators, cycles, hostel essentials, and other daily-use items while creating a trusted student-to-student marketplace.
 
 ---
 
-Project Highlights
+## 🖥️ Desktop Preview
+
+![CampusKart Desktop](assets/desktop-preview.png)
+
+---
+
+## 📱 Mobile Responsive Preview
+
+<p align="center">
+  <img src="assets/mobile-preview.png" width="320">
+</p>
+
+---
+
+# 🚀 Project Highlights
 
 - Full-Stack Web Application
-- User Authentication & Session Management
+- Secure Student Login System
 - Product Management System
-- Database Integration with MySQL
+- PostgreSQL Database Integration
+- Cloudinary Image Storage
 - Responsive User Interface
-- Secure Data Handling
-- CRUD Operations Implementation
+- Wishlist & Shopping Cart
+- Search & Category Filtering
+- Dark / Light Mode
+- CRUD Operations
 - Scalable Project Architecture
 
 ---
 
-Problem Statement
+# 📖 Problem Statement
 
-Students frequently need textbooks, electronics, hostel essentials, and other resources at affordable prices. Existing marketplaces often lack campus-specific trust and convenience.
+Students frequently need textbooks, electronics, hostel essentials, bicycles, and other products at affordable prices. Existing marketplaces are not designed specifically for campus communities and often lack trust among buyers and sellers.
 
-CampusKart 2 solves this problem by providing a dedicated marketplace where students can connect, trade products, and manage listings within a secure academic environment.
+CampusKart solves this problem by providing a dedicated marketplace where students can safely buy, sell, and manage products within their own campus ecosystem.
 
 ---
 
-Tech Stack
+# 🛠 Tech Stack
 
-Frontend
+## Frontend
 
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (ES6)
 
-Backend
+## Backend
 
-- Java
-- JDBC
-- Servlets / JSP
+- Node.js
+- Express.js
 
-Database
+## Database
 
-- MySQL
+- PostgreSQL
 
-Development Tools
+## Cloud & Deployment
 
-- Apache Tomcat
+- Cloudinary
+- Render
+
+## Development Tools
+
 - Git
 - GitHub
 - VS Code
-- IntelliJ IDEA / Eclipse
+- Postman
 
 ---
 
-Key Features
+# ✨ Key Features
 
-User Authentication
+## User Authentication
 
-- Student Registration
-- Secure Login System
-- Session Management
-- User Profile Handling
+- Student Login System
+- User Profile
+- Local Storage Session
+- Secure Authentication
 
-Product Management
+## Product Management
 
-- Add New Products
-- Edit Product Information
+- Add Products
+- Multiple Image Upload
+- Edit Products
 - Delete Products
-- Product Categorization
-- Product Listings
+- Product Categories
 
-Marketplace Functionality
+## Marketplace
 
-- Browse Available Products
-- Search and Filter Products
-- Product Details View
-- Responsive Shopping Experience
+- Browse Products
+- Product Details
+- Search Products
+- Category Filter
+- Responsive Design
 
-Database Operations
+## Shopping Features
 
-- Persistent Data Storage
-- CRUD Functionality
-- Optimized Database Queries
+- Wishlist
+- Shopping Cart
+- My Products Dashboard
+
+## Database
+
+- PostgreSQL Integration
+- CRUD Operations
 - Relational Database Design
 
 ---
 
-System Architecture
+# 🏗 System Architecture
 
+```
 Client (Browser)
         │
         ▼
 Frontend (HTML, CSS, JavaScript)
         │
         ▼
-Java Servlets / JSP
+Node.js + Express.js
         │
         ▼
-JDBC Connectivity
+PostgreSQL Database
         │
         ▼
-MySQL Database
+Cloudinary (Image Storage)
+```
 
 ---
 
-Technical Skills Demonstrated
+# 💻 Technical Skills Demonstrated
 
 - Full-Stack Web Development
-- Object-Oriented Programming (OOP)
-- Java Backend Development
-- Database Design and Management
-- JDBC Integration
-- Authentication and Authorization
+- REST API Development
 - CRUD Operations
+- Database Design
+- PostgreSQL
+- Cloudinary Integration
 - Responsive Web Design
-- Version Control using Git and GitHub
-- Software Architecture Fundamentals
+- Authentication
+- File Upload Handling
+- Git & GitHub
+- Software Architecture
 
 ---
 
-Project Outcomes
+# 🎯 Project Outcomes
 
-- Designed and developed a complete full-stack web application.
-- Implemented secure user authentication and session handling.
-- Integrated MySQL database with Java backend using JDBC.
-- Developed scalable product management and marketplace functionalities.
+- Designed and developed a complete full-stack marketplace.
+- Integrated PostgreSQL database with Express.js backend.
+- Implemented image upload using Cloudinary.
+- Built responsive UI for desktop and mobile devices.
+- Developed complete product management functionality.
 - Applied software engineering principles to solve a real-world campus problem.
 
 ---
 
-Future Enhancements
+# 🔮 Future Enhancements
 
-- Spring Boot Migration
-- REST API Development
-- Shopping Cart & Checkout System
-- Payment Gateway Integration
-- Wishlist Functionality
+- AI Product Description Generator
+- Product Recommendation System
+- Online Payment Integration
+- Order Tracking
 - Product Reviews & Ratings
 - Admin Dashboard
 - Email Notifications
-- Cloud Deployment (AWS / Render)
+- Chat Between Buyer & Seller
 
 ---
 
-Screenshots
+# 📸 Screenshots
 
-Home Page
+## Desktop
 
-Add project screenshot here
+![Desktop](assets/desktop-preview.png)
 
-Product Marketplace
+## Mobile
 
-Add project screenshot here
-
-Authentication System
-
-Add project screenshot here
-
-Product Management Dashboard
-
-Add project screenshot here
+<p align="center">
+<img src="assets/mobile-preview.png" width="320">
+</p>
 
 ---
 
-Author
+# 👨‍💻 Author
 
-Vikash Kumar
+**Vikash Kumar**
+
 B.Tech – Computer Science Engineering
-Lovely Professional University (LPU)
+
+Lovely Professional University
 
 GitHub: https://github.com/Vikash-Kumar081
 
 ---
 
-License
+# 📄 License
 
-This project is licensed under the MIT License.
+This project is created for educational and portfolio purposes.
 
 ---
 
