@@ -5,9 +5,6 @@ CampusKart is a full-stack marketplace built specifically for college students, 
 The platform was developed to solve a common problem faced by students—finding affordable second-hand products such as laptops, books, calculators, cycles, hostel essentials, and other daily-use items while creating a trusted student-to-student marketplace.
 
 ---
-
-## 🖥️ Desktop Preview
-
 ## 🖥️ Desktop Preview
 
 ![CampusKart Desktop](desktop-preview.png)
