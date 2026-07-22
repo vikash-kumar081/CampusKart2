@@ -8,14 +8,16 @@ The platform was developed to solve a common problem faced by students—finding
 
 ## 🖥️ Desktop Preview
 
-![CampusKart Desktop](assets/desktop-preview.png)
+## 🖥️ Desktop Preview
+
+![CampusKart Desktop](desktop-preview.png)
 
 ---
 
 ## 📱 Mobile Responsive Preview
 
 <p align="center">
-  <img src="assets/mobile-preview.png" width="320">
+  <img src="mobile-preview.png" width="320">
 </p>
 
 ---
@@ -171,20 +173,6 @@ Cloudinary (Image Storage)
 - Admin Dashboard
 - Email Notifications
 - Chat Between Buyer & Seller
-
----
-
-# 📸 Screenshots
-
-## Desktop
-
-![Desktop](assets/desktop-preview.png)
-
-## Mobile
-
-<p align="center">
-<img src="assets/mobile-preview.png" width="320">
-</p>
 
 ---
 
