@@ -1840,6 +1840,11 @@ body.dark-mode .price{
 .mobile-bottom-nav.hide-scroll{
     transform:translateY(100%);
 }
+.cart-sidebar{
+        height:100vh;
+        bottom:0;
+        top:0;
+    }
 }
 /* Bottom Nav Dark Mode */
 body.dark-mode .mobile-bottom-nav{

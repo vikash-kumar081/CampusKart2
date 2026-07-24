@@ -28,8 +28,8 @@ searchInput.addEventListener("keyup", () => {
  =========================*/
 
 let cartCount = 0;
-const cartCounter =
-document.querySelector(".cart-count");
+ const cartCounters =
+document.querySelectorAll(".cart-count");
 
 const modal = document.getElementById("productModal");
 const closeBtn = document.querySelector(".close-btn");
@@ -377,19 +377,40 @@ logoutBtn.addEventListener("click",(e)=>{
     profileEmail.textContent = "";
     alert("Logged out successfully");
 });
-loginBtn.addEventListener("click",(e)=>{
+const mobileLogout =
+document.getElementById("mobileLogout");
+
+if(mobileLogout){
+    mobileLogout.addEventListener("click",(e)=>{
+        e.preventDefault();
+
+        localStorage.removeItem("userName");
+        localStorage.removeItem("userEmail");
+
+        loginBtn.innerHTML =
+        `<i class="fa-solid fa-user"></i> Login`;
+
+        loginBtn.classList.remove("logged-in");
+        profileMenu.classList.remove("active");
+
+        profileName.textContent = "";
+        profileEmail.textContent = "";
+
+        menu.classList.remove("active");
+        document.body.style.overflow = "";
+
+        alert("Logged out successfully");
+    });
+}
+loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
     const savedName = localStorage.getItem("userName");
 
-    if(window.innerWidth <= 768 && savedName){
-        return;
-    }
-
-    if(savedName){
-        profileMenu.classList.toggle("active");
-    }else{
+    if (!savedName) {
         loginModal.classList.add("active");
+    } else {
+        profileMenu.classList.toggle("active");
     }
 });
 const closeLogin =
@@ -400,12 +421,15 @@ closeLogin.addEventListener("click",()=>{
 
 });
 document.addEventListener("click",(e)=>{
+console.log("Clicked:", e.target);
     if(
         profileMenu &&
-        !profileMenu.contains(e.target)
+        !profileMenu.contains(e.target) &&
+        !mobileProfileBtn.contains(e.target)
     ){
         profileMenu.classList.remove("active");
     }
+
 });
 document
 .getElementById("loginForm")
@@ -582,6 +606,16 @@ sellForm.addEventListener("submit", async (e) => {
     e.preventDefault();
      submitBtn.disabled = true;
     submitBtn.innerText = "Uploading Images...";
+ const userName = localStorage.getItem("userName");
+const userEmail = localStorage.getItem("userEmail");
+
+if (!userName || !userEmail) {
+    alert("Please Login First");
+    loginModal.classList.add("active");
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Submit Product";
+    return;
+}   
     const formData = new FormData();
     formData.append(
         "product_name",
@@ -768,7 +802,9 @@ async function loadCart() {
     }
     itemDiv.remove();
     cartCount--;
-    cartCounter.textContent = cartCount;
+    cartCounters.forEach(counter => {
+    counter.textContent = cartCount;
+});;
     total -= parseInt(
         priceText.replace("₹","")
     );
@@ -781,8 +817,11 @@ async function loadCart() {
                 priceText.replace("₹","")
             );
         });
-        cartCounter.textContent = cartCount;
-        totalPrice.textContent = total;
+    cartCounters.forEach(counter => {
+    counter.textContent = cartCount;
+});
+
+totalPrice.textContent = total;
     } catch(error) {
         console.log(error);
     }
@@ -905,6 +944,23 @@ firstImage
     } catch(error){
         console.log(error);
     }
+}
+const myOrdersBtn = document.getElementById("myOrdersBtn");
+
+if (myOrdersBtn) {
+    myOrdersBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const userEmail = localStorage.getItem("userEmail");
+
+        if (!userEmail) {
+            alert("Please Login First");
+            loginModal.classList.add("active");
+            return;
+        }
+
+        alert("📦 You haven't placed any orders yet.");
+    });
 }
 document
 .getElementById("dropdownMyProducts")
@@ -1188,16 +1244,12 @@ if (mobileCart) {
 if (mobileProfileBtn) {
     mobileProfileBtn.addEventListener("click", (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
-        const savedName = localStorage.getItem("userName");
-
-        if (!savedName) {
-            loginModal.classList.add("active");
-        } else {
-            profileMenu.classList.toggle("active");
-        }
+        loginBtn.click();
     });
 }
+
 let lastScroll = 0;
 const bottomNav = document.querySelector(".mobile-bottom-nav");
 
