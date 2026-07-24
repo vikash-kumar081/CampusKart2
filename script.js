@@ -365,26 +365,23 @@ logoutBtn.addEventListener("click",(e)=>{
     e.preventDefault();
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
+    if(window.innerWidth <= 768){
+    loginBtn.textContent = "Login";
+}else{
     loginBtn.innerHTML =
     `<i class="fa-solid fa-user"></i> Login`;
+}
     loginBtn.classList.remove("logged-in");
     profileMenu.classList.remove("active");
     profileName.textContent = "";
     profileEmail.textContent = "";
     alert("Logged out successfully");
 });
-const closeLogin =
-document.querySelector(".close-login");
-
 loginBtn.addEventListener("click",(e)=>{
-    e.preventDefault();
-
-    loginBtn.addEventListener("click",(e)=>{
     e.preventDefault();
 
     const savedName = localStorage.getItem("userName");
 
-    // Mobile me login ke baad VK par click karne se kuch nahi hoga
     if(window.innerWidth <= 768 && savedName){
         return;
     }
@@ -395,6 +392,8 @@ loginBtn.addEventListener("click",(e)=>{
         loginModal.classList.add("active");
     }
 });
+const closeLogin =
+document.querySelector(".close-login");
 
 closeLogin.addEventListener("click",()=>{
     loginModal.classList.remove("active");
@@ -1190,7 +1189,13 @@ if (mobileProfileBtn) {
     mobileProfileBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.getElementById("loginBtn")?.click();
+        const savedName = localStorage.getItem("userName");
+
+        if (!savedName) {
+            loginModal.classList.add("active");
+        } else {
+            profileMenu.classList.toggle("active");
+        }
     });
 }
 let lastScroll = 0;
