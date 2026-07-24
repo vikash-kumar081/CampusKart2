@@ -379,7 +379,15 @@ document.querySelector(".close-login");
 loginBtn.addEventListener("click",(e)=>{
     e.preventDefault();
 
+    loginBtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+
     const savedName = localStorage.getItem("userName");
+
+    // Mobile me login ke baad VK par click karne se kuch nahi hoga
+    if(window.innerWidth <= 768 && savedName){
+        return;
+    }
 
     if(savedName){
         profileMenu.classList.toggle("active");
