@@ -425,6 +425,9 @@ footer p{
 
 .nav-right{
     grid-area:right;
+    justify-self:end;
+    display:flex;
+    align-items:center;
 }
 
 .search-box{
@@ -444,8 +447,29 @@ footer p{
     padding:12px;
 }
 .logo h1{
-    font-size:0.9rem;
-    line-height:1;
+    color:#fff;
+    font-size:1.2rem;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.logo h1::before{
+    content:"\f54e";
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    color:#22c55e;
+    font-size:18px;
+    margin-right:8px;
+}
+
+.logo h1 i{
+    color:#22c55e;
+    font-size:1.1rem;
+}
+
+.logo span{
+    color:#22c55e;
 }
 .logo p{
     display:none;
@@ -467,10 +491,13 @@ footer p{
     white-space:nowrap;
 }
 #loginBtn{
-    font-size:0;
-     display:flex;
+    width:40px;
+    height:40px;
+    display:flex;
     align-items:center;
-    gap:4px;
+    justify-content:center;
+    font-size:0;
+    border-radius:12px;
 }
 #loginBtn i{
     font-size:18px;
@@ -497,7 +524,7 @@ footer p{
      overflow-y: auto;
     overscroll-behavior: contain;
     transition:.35s;
-    z-index: 9999;
+    z-index: 10001;
       justify-content: flex-start;
     align-items: stretch;
 }
@@ -769,21 +796,6 @@ footer p{
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
-}
-.close-btn{
-    position:absolute;
-    top:10px;
-    right:20px;
-    font-size:28px;
-    cursor:pointer;
-}
-
-#addToCartBtn{
-    margin-top:15px;
-    padding:12px 20px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
 }
 .cart-sidebar{
     position:fixed;
@@ -1422,6 +1434,22 @@ body.dark-mode .price{
 .menu-header span{
     color:#22c55e;
 }
+#sellBtn{
+    display:none;
+}
+.cart-link{
+    display:none !important;
+    visibility:hidden !important;
+}
+
+.logo{
+    justify-self:center;
+    text-align:center;
+}
+
+.nav-right{
+    justify-self:end;
+}
 }
 .card{
     position:relative;
@@ -1701,4 +1729,142 @@ body.dark-mode .price{
     .desktop-theme{
         display:none !important;
     }
+}
+/* =========================
+   MOBILE BOTTOM NAVIGATION
+========================= */
+
+.mobile-bottom-nav{
+    display:none;
+}
+
+@media (max-width:768px){
+
+.mobile-bottom-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:75px;
+    background:#fff;
+    border-top:1px solid #e5e7eb;
+    box-shadow:0 -5px 20px rgba(0,0,0,.08);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:9999;
+    border-radius:18px 18px 0 0;
+}
+
+.mobile-nav-item{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    text-decoration:none;
+    color:#6b7280;
+    font-size:11px;
+    font-weight:500;
+    position:relative;
+}
+
+.mobile-nav-item i{
+    font-size:20px;
+}
+
+.mobile-nav-item.active{
+    color:#16a34a;
+}
+
+/* ===== Sell Button ===== */
+
+.mobile-sell-btn{
+    position:relative;
+    width:62px;
+    height:62px;
+    margin-top:-32px;
+    border-radius:50%;
+    border:2px solid #fff;
+    background:#ffffff;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.mobile-sell-btn:hover{
+    transform:translateY(-3px);
+}
+
+.mobile-sell-btn i{
+    font-size:24px;
+    color:#16a34a;
+}
+
+/* Text circle ke niche */
+
+.mobile-sell-btn span{
+    position:absolute;
+    top:60px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:11px;
+    color:#6b7280;
+    font-weight:500;
+    white-space:nowrap;
+    line-height:1;
+}
+
+.mobile-cart .cart-count{
+    position:absolute;
+    top:-2px;
+    right:18px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#16a34a;
+    color:#fff;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.mobile-bottom-nav{
+    transition:transform .3s ease;
+}
+
+.mobile-bottom-nav.hide-scroll{
+    transform:translateY(100%);
+}
+}
+/* Bottom Nav Dark Mode */
+body.dark-mode .mobile-bottom-nav{
+    background:#01020a;
+    border-top:1px solid #221e1e;
+    box-shadow:0 -5px 20px rgba(0,0,0,.45);
+}
+
+body.dark-mode .mobile-nav-item{
+    color:#9ca3af;
+}
+
+body.dark-mode .mobile-nav-item.active{
+    color:#22c55e;
+}
+
+body.dark-mode .mobile-sell-btn{
+    background:#1f2937;
+    border:2px solid #111827;
+}
+
+body.dark-mode .mobile-sell-btn span{
+    color:#d1d5db;
+}
+
+body.dark-mode .mobile-cart .cart-count{
+    background:#22c55e;
 }

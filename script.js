@@ -1143,11 +1143,62 @@ if(closeMenu){
     menu.classList.remove("active");
     document.body.style.overflow = "";
 });
+}const myProductsBtn = document.getElementById("myProductsBtn");
+
+if(myProductsBtn){
+    myProductsBtn.addEventListener("click", async (e)=>{
+        e.preventDefault();
+
+        await loadMyProducts();
+
+        menu.classList.remove("active");
+        document.body.style.overflow = "";
+    });
 }
-document
-.getElementById("dropdownMyProducts")
-.addEventListener("click", async (e) => {
-    e.preventDefault();
-    await loadMyProducts();
-    profileMenu.classList.remove("active");
+// ================================
+// Mobile Bottom Navigation
+// ================================
+
+const mobileSellBtn = document.getElementById("mobileSellBtn");
+const mobileCart = document.querySelector(".mobile-cart");
+const mobileProfileBtn = document.getElementById("mobileProfileBtn");
+
+// Sell Button
+if (mobileSellBtn) {
+    mobileSellBtn.addEventListener("click", () => {
+        document.getElementById("sellBtn")?.click();
+    });
+}
+
+// Cart Button
+if (mobileCart) {
+    mobileCart.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(".cart-link")?.click();
+    });
+}
+// Profile Button
+if (mobileProfileBtn) {
+    mobileProfileBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.getElementById("loginBtn")?.click();
+    });
+}
+let lastScroll = 0;
+const bottomNav = document.querySelector(".mobile-bottom-nav");
+
+window.addEventListener("scroll", () => {
+
+    const currentScroll = window.pageYOffset;
+
+    if(currentScroll > lastScroll && currentScroll > 100){
+        // Scrolling Down
+        bottomNav.classList.add("hide-scroll");
+    }else{
+        // Scrolling Up
+        bottomNav.classList.remove("hide-scroll");
+    }
+
+    lastScroll = currentScroll;
 });
